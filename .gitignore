@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.env
+__pycache__/
+.python-version
+.venv/
+.env*
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+
+# Ollama and AI model files
+*.gguf
+models/*.gguf
+models/*.bin
+models/*.safetensors
+/logs/
+/tmp/
+*.log
+
+# Docker volumes
+docker-compose.override.yml

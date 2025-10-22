@@ -1,0 +1,10 @@
+{
+  "name": "cloud_finalyear",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "packages/*"
+  ]
+}
