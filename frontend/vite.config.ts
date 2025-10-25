@@ -20,6 +20,19 @@ export default defineConfig({
         changeOrigin: true
       }
     }
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'codemirror': ['@codemirror/state', '@codemirror/view', '@codemirror/language']
+        }
+      }
+    }
   }
 })
 

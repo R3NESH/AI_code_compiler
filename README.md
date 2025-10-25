@@ -271,14 +271,56 @@ cloud_finalyear/
 
 ## 🚀 Deployment
 
-### Production Build
+### Deploy to Render (Recommended) ⭐
 
+**Quick Deploy in 5 Minutes:**
+
+1. **Push to GitHub/GitLab**
+   ```bash
+   git init
+   git add .
+   git commit -m "Ready for deployment"
+   git push -u origin main
+   ```
+
+2. **Deploy on Render**
+   - Go to [dashboard.render.com](https://dashboard.render.com)
+   - Click "New +" → "Blueprint"
+   - Connect your repository
+   - Set `OPENAI_API_KEY` in backend service
+   - Click "Apply"
+
+3. **Done!** Your app will be live in ~5-10 minutes
+
+**📖 Deployment Guides:**
+- **Quick Start**: See [DEPLOY_QUICK_START.md](./DEPLOY_QUICK_START.md) - 5-minute guide
+- **Complete Guide**: See [RENDER_DEPLOYMENT_GUIDE.md](./RENDER_DEPLOYMENT_GUIDE.md) - Full documentation
+- **Checklist**: See [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md) - Step-by-step
+
+**✅ Verify Deployment Readiness:**
 ```bash
-# Build for production
-./scripts/build.sh
+# Windows
+.\scripts\verify-deployment-ready.ps1
+
+# Linux/Mac
+./scripts/verify-deployment-ready.sh
 ```
 
-### Manual Deployment
+**💰 Cost:** Free tier available (750 hours/month)
+
+---
+
+### Local Production Build
+
+```bash
+# Windows
+.\scripts\build-production.ps1
+
+# Linux/Mac
+./scripts/build-production.sh
+```
+
+### Manual Deployment (Other Platforms)
 
 1. **Build Frontend**:
    ```bash
@@ -290,10 +332,10 @@ cloud_finalyear/
    ```bash
    cd backend
    pip install -r requirements.txt
-   uvicorn app.main:app --host 0.0.0.0 --port 8000
+   gunicorn app.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker
    ```
 
-3. **Serve Frontend**: Use a web server (nginx, Apache) to serve the built frontend files
+3. **Serve Frontend**: Use a web server (nginx, Apache) to serve `frontend/dist/`
 
 ## 🔧 Development
 

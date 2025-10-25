@@ -1,0 +1,53 @@
+# Render Ignore File
+# Files and directories to exclude from deployment
+
+# Development
+.git/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dependencies
+node_modules/
+backend/venv/
+backend/env/
+backend/__pycache__/
+
+# Build artifacts
+frontend/dist/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment files
+.env
+.env.local
+.env.development
+*.env.local
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker (not needed on Render)
+docker-compose.yml
+Dockerfile.local
+models/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Test files
+tests/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
