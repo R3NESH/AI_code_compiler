@@ -33,7 +33,6 @@ services:
   - type: web
     name: ai-code-compiler-frontend
     runtime: static
-    plan: free
     branch: main
     rootDir: frontend
     buildCommand: npm install && npm run build
