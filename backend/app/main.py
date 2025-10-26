@@ -22,13 +22,17 @@ _explain_lock = Lock()
 
 app = FastAPI(title="Cloud Final Year API")
 
-# Configure CORS from env; default allows common local dev ports
-_origins_env = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:5177")
+# Configure CORS from env; default allows common local dev ports and Render domains
+_origins_env = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:5177,https://ai-code-compiler-6.onrender.com")
 _allow_origins = [o.strip() for o in _origins_env.split(",") if o.strip()]
+
+# In production, also allow all Render domains if ALLOWED_ORIGINS is not explicitly set
+if os.getenv("RENDER"):
+    _allow_origins.append("https://*.onrender.com")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_allow_origins,
+    allow_origins=_allow_origins if _allow_origins else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
