@@ -1,3 +1,5 @@
+const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8000'
+
 export type RecommendItem = { 
   title: string
   url: string
@@ -16,7 +18,7 @@ export type RecommendResponse = {
 }
 
 export async function recommend(topic: string, language?: string): Promise<RecommendResponse> {
-  const res = await fetch('/ai/recommend', {
+  const res = await fetch(`${API_BASE}/ai/recommend`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ topic, language })

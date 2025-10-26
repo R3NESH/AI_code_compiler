@@ -1,3 +1,5 @@
+const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8000'
+
 type ExecuteRequest = {
   language: 'python' | 'javascript' | 'cpp' | 'java'
   code: string
@@ -11,7 +13,7 @@ type ExecuteResponse = {
 }
 
 export async function executeCode(body: ExecuteRequest): Promise<ExecuteResponse> {
-  const res = await fetch('/execute', {
+  const res = await fetch(`${API_BASE}/execute`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body)

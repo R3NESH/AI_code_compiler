@@ -1,3 +1,5 @@
+const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8000'
+
 type AISuggestRequest = {
   language: string
   code: string
@@ -20,7 +22,7 @@ export type AISuggestResponse = {
 }
 
 export async function aiSuggest(req: AISuggestRequest): Promise<AISuggestResponse> {
-  const res = await fetch('/ai/suggest', {
+  const res = await fetch(`${API_BASE}/ai/suggest`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(req)
@@ -40,7 +42,7 @@ export type AIExplainResponse = {
 }
 
 export async function aiExplain(language: string, code: string, error?: string): Promise<AIExplainResponse> {
-  const res = await fetch('/ai/explain', {
+  const res = await fetch(`${API_BASE}/ai/explain`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ language, code, error })
