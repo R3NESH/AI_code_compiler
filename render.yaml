@@ -30,8 +30,9 @@ services:
     healthCheckPath: /api/ping
 
   # Frontend Static Site
-  - type: static
+  - type: web
     name: ai-code-compiler-frontend
+    runtime: static
     plan: free
     branch: main
     rootDir: frontend
